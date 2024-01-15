@@ -39,3 +39,6 @@ http://localhost:8000/docs#/default
 1. Make environmental variables a bit more flexible and easier to inject
 2. Create logging decorators to cut down on boilerplate of timing and logging functions
 3. Create Unit Tests
+
+# Doubts: 
+There isn't a ton of complexity in the Location service and generally I think it is super easy to read. My main reservation with it is that it is composed similiarity to a Java/Scala project. Most of the examples on setting up a FastApi project had it composed more like a script rather than the Object Oriented Structure that I went for. I chose my structure to hide implementation details and to make Unit Testing a bit easier when added, but I didn't see a ton of other people doing it the same way online, so I have the inkling that while this service might be okay/good code, it could be bad Python. I would love to get a more experienced developer some critiques on project setup or what they would do differently.   
