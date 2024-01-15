@@ -19,6 +19,8 @@ docker-compose up --build
 # In browser
 http://localhost:8000/docs#/default
 ```
+![OpenAPI-sample.png](image%2FOpenAPI-sample.png)
+
 
 # New Lessons/Technologies 
 <b>Virtual Environments via Python</b>: I haven't utilized pip build system for any project or had a multi-directory structure. 
