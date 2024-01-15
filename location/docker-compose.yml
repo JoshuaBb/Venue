@@ -28,3 +28,5 @@ services:
       - .:/flyway/sql
     depends_on:
       - db
+volumes:
+  postgres-data:
