@@ -24,6 +24,9 @@ http://localhost:8000/docs#/default
 
 
 # New Lessons/Technologies 
+
+<b>Python</b>: Still trying to get familiar with Python syntax and how to write a pythonic application. In this specific project the async defs seem a bit overkill and a couple of things feel a bit off. Even though they don't offer much utility, I wanted to play around with them
+
 <b>Virtual Environments via Python</b>: I haven't utilized pip build system for any project or had a multi-directory structure. 
 
 <b>Fast API</b>: I have only used Django and FastApi for playing around with webservices. From a comparison point of view, I liked FastAPI a lot. It wasn't super opinionated and seemed easy enough to setup. The integration around OpenAPI was pretty awesome
