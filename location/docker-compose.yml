@@ -24,6 +24,7 @@ services:
       test: "pg_isready -q -U docker"
   flyway:
     image: flyway/flyway
+    # TODO Remove these magic variables and simplify local.env file
     command: -url=jdbc:postgresql://db:5432/postgres -schemas=public -user=docker -password=example -connectRetries=60 migrate
     env_file: local.env
     volumes:
