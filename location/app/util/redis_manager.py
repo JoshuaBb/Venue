@@ -11,4 +11,7 @@ class RedisManager:
         value = self.redis.set(key, value)
         return value
 
+    async def delete(self, key):
+        return self.redis.delete(key)
+
 

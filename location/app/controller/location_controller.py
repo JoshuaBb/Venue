@@ -25,4 +25,9 @@ class LocationController():
         return location
 
     async def delete_location_by_id(self, location_id) -> int:
-        await self.location_store.delete_location_by_id(location_id)
+        row_count = await self.location_store.delete_location_by_id(location_id)
+        if row_count == 1:
+            await self.redis_manager.delete(location_id)
+        return row_count
+
+
