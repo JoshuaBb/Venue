@@ -20,6 +20,5 @@ class LocationController():
                 await self.redis_manager.set(str(location_id), str(location.model_dump_json()))
                 return from_dto(location_dto)
         else:
-            print(location_str)
             location = Address.parse_raw(location_str)
         return location
