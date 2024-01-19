@@ -1,6 +1,4 @@
-import asyncio
 import unittest
-from fastapi.testclient import TestClient
 from app.controller.location_controller import LocationController
 from app.router.location_router import LocationRouter
 from app.model.address import Address

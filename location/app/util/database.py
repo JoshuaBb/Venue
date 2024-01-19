@@ -15,6 +15,7 @@ class Db:
                                 host=host,
                                 password=password,
                                 port=port)
+        # Not positive yet that we want this long lived.
         self.conn = conn
 
     async def query(self,
@@ -55,4 +56,20 @@ class Db:
             if self.conn:
                 if curr:
                     curr.close()
+
+    async def update(self, query: str, args=None) -> int:
+        curr = None
+        try:
+            curr = self.conn.cursor()
+            curr.execute(query, args)
+            row_count = curr.rowcount
+            self.conn.commit()
+            return row_count
+        except (Exception, psycopg2.DatabaseError) as error:
+            print('error occured', error)
+        finally:
+            if self.conn:
+                if curr:
+                    curr.close()
+
 

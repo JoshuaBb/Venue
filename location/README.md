@@ -12,6 +12,7 @@ The Location service is built to store event and user location data. It utilizes
 Everything can be setup via a docker-compose start up command. There is a volume mount for persisting the Postgres database that was setup via FlyWay, but there is not data that was seeded into it yet. 
 
 ```bash
+# Note: I think there might be an issue on first run. Will double check
 # Make sure you are in the location module
 cd /location 
 # Make sure docker is installed and running

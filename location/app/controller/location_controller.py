@@ -12,6 +12,7 @@ class LocationController():
         location_str = await self.redis_manager.get(location_id)
         if location_str is None:
             location_dto = await self.location_store.get_location_by_id(location_id)
+            # Stubbed for now
             if location_dto is None:
                 location = Address(location_id=location_id, latitude=2.0, longitude=3.0)
                 return location
@@ -22,3 +23,6 @@ class LocationController():
         else:
             location = Address.parse_raw(location_str)
         return location
+
+    async def delete_location_by_id(self, location_id) -> int:
+        await self.location_store.delete_location_by_id(location_id)
