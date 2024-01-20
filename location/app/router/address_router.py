@@ -16,6 +16,7 @@ class AddressRouter:
             summary="Gets the data associated with a address_id",
             endpoint=self.get_address_by_id,
             methods=["GET"],
+            response_model=Address,
             response_description="Get address level data associated with address_id"
         )
         self.router.add_api_route(
@@ -25,10 +26,24 @@ class AddressRouter:
             methods=["DELETE"],
             response_description="Deletes an address by address_id"
         )
+        # Not yet able to handle duplicates
+        self.router.add_api_route(
+            path="/",
+            summary="Inserts address data into the database",
+            endpoint=self.post_address,
+            response_model=Address,
+            response_description="Inserts address data",
+            methods=["POST"],
+        )
 
     async def get_address_by_id(self, address_id) -> Address:
         """API handler for getting address data by address_id"""
         return await self.address_controller.get_address_by_id(address_id)
+
+    async def post_address(self, address: Address) -> Address:
+        """API for insert address level data"""
+        pass
+
 
     async def delete_address_by_id(self, address_id) -> bool:
         """API handler for deleting address data using the address_id"""

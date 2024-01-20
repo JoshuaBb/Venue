@@ -25,6 +25,6 @@ location_controller = address_controller.AddressController(redis_manager, locati
 
 # Routers
 health_router = health_router.HealthRouter()
-location_router = address_router.AddressRouter(location_controller)
+address_router = address_router.AddressRouter(location_controller)
 
-routers = [health_router.router, location_router.router]
+routers = [health_router.router, address_router.router]
