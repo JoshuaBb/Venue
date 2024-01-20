@@ -27,9 +27,11 @@ class LocationRouter:
         )
 
     async def get_location_by_id(self, location_id) -> Address:
+        """API handler for getting location data by location_id"""
         return await self.location_controller.get_location_by_id(location_id)
 
     async def delete_location_by_id(self, location_id) -> bool:
+        """API handler for deleting location data using the location_id"""
         rows_update = await self.location_controller.delete_location_by_id(location_id)
         if rows_update == 1:
             return True

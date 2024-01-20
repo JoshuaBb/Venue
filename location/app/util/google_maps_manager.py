@@ -19,6 +19,7 @@ class GoogleMapsManager:
         self.gmaps = googlemaps.Client(key=api_key)
 
     def get_google_maps_info(self, address, city, province_or_state) -> Optional[GoogleMapsInfo]:
+        """Given an address, city, and province or state combination returns geo location info using Google Map API"""
         geocode_result = self.gmaps.geocode(f"{address}, {city}, ${province_or_state}")
         if geocode_result:
             if len(geocode_result) > 0:

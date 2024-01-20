@@ -15,5 +15,6 @@ class HealthRouter():
         )
 
     def get_health(self):
+        """Should just return 200 if the service is up"""
         return "Everything WORKS!"
 

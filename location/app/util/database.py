@@ -23,6 +23,7 @@ class Db:
                     convert_func,
                     args=None,
                     ):
+        """Queries a database and converts the result set using a convert function"""
         curr = None
         try:
             curr = self.conn.cursor()
@@ -41,6 +42,7 @@ class Db:
                         convert_func,
                         args=None
     ):
+        """Queries a database, but only gets the first value. It then converts the result set to an object using the convert function"""
         curr = None
         try:
             curr = self.conn.cursor()
@@ -58,6 +60,7 @@ class Db:
                     curr.close()
 
     async def update(self, query: str, args=None) -> int:
+        """Will update, insert, or delete values from the database. Returns the number of rows effected"""
         curr = None
         try:
             curr = self.conn.cursor()

@@ -4,6 +4,7 @@ from app.dto.address_dto import AddressDto
 
 
 def from_dto(dto: AddressDto):
+    """Converts a DTO object to its API representation"""
     address = Address()
     address.location_id = dto.location_id
 

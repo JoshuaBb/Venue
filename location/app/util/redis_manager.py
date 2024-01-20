@@ -3,20 +3,27 @@ import os
 
 
 class RedisManager:
-    # Will probably add a namespace so multiple caches can be supported with a bit more transparency
-    def __init__(self):
+    def __init__(self, name_space: str):
         redis_host = os.getenv('REDIS_HOST')
         redis_port = int(os.getenv('REDIS_PORT'))
 
+        self.name_space = name_space
         self.redis = redis.Redis(host=redis_host, port=redis_port, decode_responses=True)
 
+    def adjusted_key(self, key):
+        """Adds a namespace identifier to the redis cache to make it easier to identify keys"""
+        return f"{self.name_space}_{key}"
+
     async def get(self, key: str):
-        value = self.redis.get(key)
+        """Pass through get method to retrieve a value from a redis cache"""
+        value = self.redis.get(self.adjusted_key(key))
         return value
 
     async def set(self, key: str, value: str):
-        value = self.redis.set(key, value)
+        """Set the value of key for a redis cache"""
+        value = self.redis.set(self.adjusted_key(key), value)
         return value
 
     async def delete(self, key):
-        return self.redis.delete(key)
+        """Deletes a key from a redis cache"""
+        return self.redis.delete(self.adjusted_key(key))

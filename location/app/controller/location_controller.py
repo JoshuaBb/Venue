@@ -10,6 +10,9 @@ class LocationController():
         self.redis_manager = redis_manager
 
     async def get_location_by_id(self, location_id: int):
+        """Gets a location by a location_id.
+        It will first look in Redis Cache and then query the database if it is missing
+        """
         location_str = await self.redis_manager.get(location_id)
         if location_str is None:
             location_dto = await self.location_store.get_location_by_id(location_id)
@@ -26,6 +29,7 @@ class LocationController():
         return location
 
     async def delete_location_by_id(self, location_id) -> int:
+        """Deletes a location by location_id. It will also remove the location data from the Redis Cache"""
         row_count = await self.location_store.delete_location_by_id(location_id)
         if row_count == 1:
             await self.redis_manager.delete(location_id)
