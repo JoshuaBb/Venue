@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from app.router import location_router, health_router
 from app.controller import location_controller
 from app.util.redis_manager import RedisManager
+from app.util.google_maps_manager import GoogleMapsManager
 from app.util.database import Db
 from app.store import location_store
 import datetime
@@ -16,6 +17,9 @@ db_connection = Db()
 
 # Redis
 redis_manager = RedisManager(host="redis", port=6379)
+
+# Google Maps
+google_maps_manager = GoogleMapsManager()
 
 # Store
 location_store = location_store.LocationStore(db_connection)

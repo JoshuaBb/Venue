@@ -2,6 +2,7 @@ from app.model.address import Address, from_dto
 from app.util.redis_manager import RedisManager
 from app.store.location_store import LocationStore
 
+
 class LocationController():
 
     def __init__(self, redis_manager: RedisManager, location_store: LocationStore):
@@ -29,5 +30,3 @@ class LocationController():
         if row_count == 1:
             await self.redis_manager.delete(location_id)
         return row_count
-
-

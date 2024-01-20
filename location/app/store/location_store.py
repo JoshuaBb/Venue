@@ -2,6 +2,7 @@ from app.util.database import Db
 from app.dto.address_dto import AddressDto
 from typing import Optional
 
+
 class LocationStore:
 
     def __init__(self, db: Db):

@@ -3,7 +3,7 @@ from app.controller.location_controller import LocationController
 from app.model.address import Address
 
 
-class LocationRouter():
+class LocationRouter:
 
     def __init__(self, location_controller: LocationController):
         self.location_controller = location_controller
