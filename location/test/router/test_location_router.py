@@ -15,7 +15,7 @@ class HealthRouterTest(unittest.IsolatedAsyncioTestCase):
         location_id = 1
         address = Address()
         address.location_id = location_id
-        location_controller.get_location_by_id.return_value = address
+        location_controller.get_address_by_id.return_value = address
         location_router = LocationRouter(location_controller)
         async with AsyncClient(app=location_router.router, base_url="http://test") as ac:
             response = await ac.get(f"/location/{location_id}")

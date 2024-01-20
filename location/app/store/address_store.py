@@ -3,7 +3,7 @@ from app.dto.address_dto import AddressDto
 from typing import Optional
 
 
-class LocationStore:
+class AddressStore:
 
     def __init__(self, db: Db):
         self.db = db
