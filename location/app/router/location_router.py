@@ -27,10 +27,10 @@ class LocationRouter:
         )
 
     async def get_location_by_id(self, location_id) -> Address:
-        return self.location_controller.get_location_by_id(location_id)
+        return await self.location_controller.get_location_by_id(location_id)
 
     async def delete_location_by_id(self, location_id) -> bool:
-        rows_update = self.location_controller.delete_location_by_id(location_id)
+        rows_update = await self.location_controller.delete_location_by_id(location_id)
         if rows_update == 1:
             return True
         else:
