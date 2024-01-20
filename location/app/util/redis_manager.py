@@ -1,7 +1,9 @@
 import redis
 import os
 
+
 class RedisManager:
+    # Will probably add a namespace so multiple caches can be supported with a bit more transparency
     def __init__(self):
         redis_host = os.getenv('REDIS_HOST')
         redis_port = int(os.getenv('REDIS_PORT'))
@@ -18,5 +20,3 @@ class RedisManager:
 
     async def delete(self, key):
         return self.redis.delete(key)
-
-

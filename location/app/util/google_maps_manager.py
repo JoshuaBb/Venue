@@ -2,12 +2,14 @@ import os
 import googlemaps
 from typing import Optional
 
+
 class GoogleMapsInfo:
 
     def __init__(self, lat, lon, place_id):
         self.lat = lat
         self.lon = lon
         self.place_id = place_id
+
 
 class GoogleMapsManager:
 
@@ -25,5 +27,5 @@ class GoogleMapsManager:
                     lat = result['geometry']['location']['lat']
                     lon = result['geometry']['location']['lon']
                     place_id = result['place_id']
-                    return GoogleMapsInfo(lat,lon,place_id)
+                    return GoogleMapsInfo(lat, lon, place_id)
         return None
