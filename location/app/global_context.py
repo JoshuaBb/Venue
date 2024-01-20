@@ -9,11 +9,10 @@ import logging
 
 logging.basicConfig(level=logging.INFO, filemode='w', format=f'{datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")} - %(levelname)s - %(message)s')
 
-# Postgres Connection (TODO make environmental variable)
 db_connection = Db()
 
 # Redis
-redis_manager = RedisManager(host="redis", port=6379)
+redis_manager = RedisManager()
 
 # Google Maps
 google_maps_manager = GoogleMapsManager()
