@@ -2,6 +2,12 @@ import os
 import googlemaps
 from typing import Optional
 
+class GoogleMapsInfo:
+
+    def __init__(self, lat, lon, place_id):
+        self.lat = lat
+        self.lon = lon
+        self.place_id = place_id
 
 class GoogleMapsManager:
 
@@ -10,13 +16,14 @@ class GoogleMapsManager:
         api_key = os.getenv('GOOGLE_MAPS_API_KEY')
         self.gmaps = googlemaps.Client(key=api_key)
 
-    def get_lat_lon(self, address, city, province_or_state) -> Optional[(int, int)]:
+    def get_google_maps_info(self, address, city, province_or_state) -> Optional[GoogleMapsInfo]:
         geocode_result = self.gmaps.geocode(f"{address}, {city}, ${province_or_state}")
         if geocode_result:
             if len(geocode_result) > 0:
                 result = geocode_result[0]
-                if 'geometry' in result and 'location' in result['geometry']:
+                if 'geometry' in result and 'location' in result['geometry'] and 'place_id' in result:
                     lat = result['geometry']['location']['lat']
                     lon = result['geometry']['location']['lon']
-                    return lat, lon
+                    place_id = result['place_id']
+                    return GoogleMapsInfo(lat,lon,place_id)
         return None
