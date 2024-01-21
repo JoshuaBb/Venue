@@ -7,7 +7,7 @@
 
 ## Components
 
-### Location
+### [Location](location/README.md)
 Location is in charge of handling address information for venues. It will persist the latitude and longitude to aid in searching 
 ### Planner 
 Planner is either a group of users or individual users that are able set up events. This service is in charge of persisting planner information such as rating and groups of users associated with a specific creating events 
@@ -24,10 +24,4 @@ Service for handling payments
 ### Event-Planner-Hub
 Orchestrator service for handling event creation for frontend
 ### Event-User-Hub
-Orchestrator service for handling user specific actions 
-
-
-
-# Sub-Modules 
-## [Location](location/README.md)
-The location submodule is used to create location data for events and users. It is a web-service built via fastAPI and utilizing a Postgres database with an immutable dataset behind a redis cache. 
+Orchestrator service for handling user specific actions
