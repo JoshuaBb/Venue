@@ -26,7 +26,7 @@ class GoogleMapsManager:
                 result = geocode_result[0]
                 if 'geometry' in result and 'location' in result['geometry'] and 'place_id' in result:
                     lat = result['geometry']['location']['lat']
-                    lon = result['geometry']['location']['lon']
+                    lon = result['geometry']['location']['lng']
                     place_id = result['place_id']
                     return GoogleMapsInfo(lat, lon, place_id)
         return None

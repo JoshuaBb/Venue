@@ -21,7 +21,7 @@ google_maps_manager = GoogleMapsManager()
 location_store = address_store.AddressStore(db_connection)
 
 # Controllers
-location_controller = address_controller.AddressController(redis_manager, location_store)
+location_controller = address_controller.AddressController(redis_manager, location_store, google_maps_manager)
 
 # Routers
 health_router = health_router.HealthRouter()

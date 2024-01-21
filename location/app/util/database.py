@@ -47,7 +47,7 @@ class Db:
         try:
             curr = self.conn.cursor()
             curr.execute(query, args)
-            row = curr.fetch_one()
+            row = curr.fetchone()
             if row:
                 return convert_func(row)
             else:

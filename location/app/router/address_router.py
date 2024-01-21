@@ -1,6 +1,7 @@
 from fastapi import APIRouter
 from app.controller.address_controller import AddressController
-from app.model.address import Address
+from app.model.address import Address, CreateAddress
+from typing import Optional
 
 
 class AddressRouter:
@@ -31,19 +32,17 @@ class AddressRouter:
             path="/",
             summary="Inserts address data into the database",
             endpoint=self.post_address,
-            response_model=Address,
             response_description="Inserts address data",
             methods=["POST"],
         )
 
-    async def get_address_by_id(self, address_id) -> Address:
+    async def get_address_by_id(self, address_id) -> Optional[Address]:
         """API handler for getting address data by address_id"""
         return await self.address_controller.get_address_by_id(address_id)
 
-    async def post_address(self, address: Address) -> Address:
-        """API for insert address level data"""
-        pass
-
+    async def post_address(self, address: CreateAddress) -> int:
+        """API handler for insert address level data"""
+        return await self.address_controller.post_address(address)
 
     async def delete_address_by_id(self, address_id) -> bool:
         """API handler for deleting address data using the address_id"""
