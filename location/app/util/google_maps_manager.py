@@ -9,10 +9,10 @@ from typing import Optional
 class GoogleMapsInfo:
 
     def __init__(self, lat, lon, place_id):
-        # Dumbing this file for now. Place_ID should be s
+        # Dumbing this file for now. You can only save the results of lat/lon for 30 days based on terms and conditions
         self.lat = 2
         self.lon = 3
-        # https://developers.google.com/maps/documentation/places/web-service/place-id#save-id 
+        # https://developers.google.com/maps/documentation/places/web-service/place-id#save-id
         self.place_id = place_id
 
 
