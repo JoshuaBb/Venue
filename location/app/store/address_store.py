@@ -1,7 +1,7 @@
 from app.util.database import Db
 from app.dto.address_dto import AddressDto
 from typing import Optional
-from app.model.address import Address
+from app.model.address import AddressResponse
 
 
 class AddressStore:
@@ -17,7 +17,8 @@ class AddressStore:
         """Deletes a address data from the database using the address_id"""
         return await self.db.update("delete from address where address_id = %s", address_id)
 
-    async def insert_address(self, address: Address) -> int:
+    # TODO: Change. This is a bit off to have the response come down to this layer
+    async def insert_address(self, address: AddressResponse) -> int:
         """Inserts address data into the database"""
         insert_str = """
            insert into address 

@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from app.controller.address_controller import AddressController
-from app.model.address import Address, CreateAddress
+from app.model.address import AddressResponse, CreateAddressRequest
 from typing import Optional
 
 
@@ -17,7 +17,7 @@ class AddressRouter:
             summary="Gets the data associated with a address_id",
             endpoint=self.get_address_by_id,
             methods=["GET"],
-            response_model=Address,
+            response_model=AddressResponse,
             response_description="Get address level data associated with address_id"
         )
         self.router.add_api_route(
@@ -43,11 +43,11 @@ class AddressRouter:
             methods=["GET"],
         )
 
-    async def get_address_by_id(self, address_id) -> Optional[Address]:
+    async def get_address_by_id(self, address_id) -> Optional[AddressResponse]:
         """API handler for getting address data by address_id"""
         return await self.address_controller.get_address_by_id(address_id)
 
-    async def post_address(self, address: CreateAddress) -> int:
+    async def post_address(self, address: CreateAddressRequest) -> int:
         """API handler for insert address level data"""
         return await self.address_controller.post_address(address)
 
@@ -59,5 +59,5 @@ class AddressRouter:
         else:
             return False
 
-    async def find_addresses(self) -> list[Address]:
+    async def find_addresses(self) -> list[AddressResponse]:
         return await self.address_controller.find_addresses()

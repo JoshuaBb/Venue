@@ -1,4 +1,4 @@
-from app.model.address import Address, from_dto, to_address, CreateAddress
+from app.model.address import AddressResponse, from_dto, to_address, CreateAddressRequest
 from app.util.redis_manager import RedisManager
 from app.store.address_store import AddressStore
 from app.util.google_maps_manager import GoogleMapsManager
@@ -13,7 +13,7 @@ class AddressController():
         self.redis_manager = redis_manager
         self.google_maps_manager = google_maps_manager
 
-    async def get_address_by_id(self, address_id: int) -> Optional[Address]:
+    async def get_address_by_id(self, address_id: int) -> Optional[AddressResponse]:
         """Gets a address by a address_id.
         It will first look in Redis Cache and then query the database if it is missing
         """
@@ -27,7 +27,7 @@ class AddressController():
                 return from_dto(address_dto)
             return None
         else:
-            location = Address.parse_raw(address_str)
+            location = AddressResponse.parse_raw(address_str)
             return location
 
     async def delete_address_by_id(self, address_id) -> int:
@@ -37,7 +37,7 @@ class AddressController():
             await self.redis_manager.delete(address_id)
         return row_count
 
-    async def post_address(self, address: CreateAddress) -> int:
+    async def post_address(self, address: CreateAddressRequest) -> int:
         """Using the Google Maps API, it will retrieve lat and lon and persist the location data into the database"""
         google_maps_info = self.google_maps_manager.get_google_maps_info(address.address, address.city,
                                                                          address.state_or_province)
@@ -47,7 +47,7 @@ class AddressController():
             # TODO make better
             return 0
 
-    async def find_addresses(self) -> list[Address]:
+    async def find_addresses(self) -> list[AddressResponse]:
         address_dtos = await self.address_store.find_addresses()
         if address_dtos:
             result = [from_dto(x) for x in address_dtos]

@@ -3,7 +3,7 @@ from typing import Optional
 from app.dto.address_dto import AddressDto
 from app.util.google_maps_manager import GoogleMapsInfo
 
-class CreateAddress(BaseModel):
+class CreateAddressRequest(BaseModel):
     address_line_one: str = None
     address_line_two: Optional[str] = None
     address_line_three: Optional[str] = None
@@ -20,7 +20,7 @@ class CreateAddress(BaseModel):
         return " ".join(var)
 
 
-class Address(BaseModel):
+class AddressResponse(BaseModel):
     address_id: Optional[int] = None
     address_line_one: Optional[str] = None
     address_line_two: Optional[str] = None
@@ -37,15 +37,15 @@ class Address(BaseModel):
 
 
 
-def to_address(create_address: CreateAddress, google_maps_info: GoogleMapsInfo) -> Address:
+def to_address(create_address: CreateAddressRequest, google_maps_info: GoogleMapsInfo) -> AddressResponse:
     # TODO: I am sure there is a better way
-    address = Address()
+    address = AddressResponse()
     address.__dict__.update(create_address.__dict__)
     address.__dict__.update(google_maps_info.__dict__)
     return address
 
-def from_dto(dto: AddressDto) -> Address:
+def from_dto(dto: AddressDto) -> AddressResponse:
     """Converts a DTO object to its API representation"""
-    address = Address()
+    address = AddressResponse()
     address.__dict__.update(dto.__dict__)
     return address
