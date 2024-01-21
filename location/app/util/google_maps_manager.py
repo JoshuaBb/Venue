@@ -3,6 +3,9 @@ import googlemaps
 from typing import Optional
 
 
+# Google is a bit stringent on what can be persisted. I think that place_id, latitude, and longitude are safe to persist
+# I will double check
+# https://stackoverflow.com/questions/20803805/terms-and-conditions-google-maps-can-i-store-lat-lng-and-address-components
 class GoogleMapsInfo:
 
     def __init__(self, lat, lon, place_id):
