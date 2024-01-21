@@ -6,4 +6,3 @@ app = FastAPI()
 # Adding Routes
 for router in routers:
     app.include_router(router)
-    app.include_router(router)
