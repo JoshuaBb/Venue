@@ -12,12 +12,12 @@ class HealthRouterTest(unittest.IsolatedAsyncioTestCase):
     @patch('app.controller.location_controller.LocationController')
     @pytest.mark.asyncio
     async def test_get_location(self, location_controller: LocationController):
-        location_id = 1
+        address_id = 1
         address = Address()
-        address.location_id = location_id
+        address.address_id = address_id
         location_controller.get_address_by_id.return_value = address
         location_router = LocationRouter(location_controller)
         async with AsyncClient(app=location_router.router, base_url="http://test") as ac:
-            response = await ac.get(f"/location/{location_id}")
+            response = await ac.get(f"/location/{address_id}")
         assert response.status_code == 200
-        assert response.json().get('location_id') == address.location_id
+        assert response.json().get('address_id') == address.address_id

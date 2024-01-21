@@ -10,14 +10,15 @@ class AddressStore:
         self.db = db
 
     async def get_address_by_id(self, address_id: int) -> Optional[AddressDto]:
-        """Gets the Location info from the database using a location_id"""
+        """Gets the address info from the database using a address_id"""
         return await self.db.query_one("select * from address where address_id = %s", AddressDto, address_id)
 
     async def delete_address_by_id(self, address_id: int) -> int:
-        """Deletes a location data from the database using the location_id"""
+        """Deletes a address data from the database using the address_id"""
         return await self.db.update("delete from address where address_id = %s", address_id)
 
     async def insert_address(self, address: Address) -> int:
+        """Inserts address data into the database"""
         insert_str = """
            insert into address 
              (address_line_one, 
@@ -61,3 +62,7 @@ class AddressStore:
              address.longitude,
              address.place_id)
         )
+
+    async def find_addresses(self) -> list[AddressDto]:
+        return await self.db.query("select * from address", AddressDto)
+

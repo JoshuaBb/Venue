@@ -1,6 +1,6 @@
 import psycopg2
 import os
-
+from psycopg2.extras import RealDictCursor
 
 class Db:
     def __init__(self):
@@ -26,7 +26,7 @@ class Db:
         """Queries a database and converts the result set using a convert function"""
         curr = None
         try:
-            curr = self.conn.cursor()
+            curr = self.conn.cursor(cursor_factory=RealDictCursor)
             curr.execute(query, args)
             rs = curr.fetchall()
             return [convert_func(row) for row in rs]
@@ -45,7 +45,7 @@ class Db:
         """Queries a database, but only gets the first value. It then converts the result set to an object using the convert function"""
         curr = None
         try:
-            curr = self.conn.cursor()
+            curr = self.conn.cursor(cursor_factory=RealDictCursor)
             curr.execute(query, args)
             row = curr.fetchone()
             if row:

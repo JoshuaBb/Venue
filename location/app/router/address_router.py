@@ -35,6 +35,13 @@ class AddressRouter:
             response_description="Inserts address data",
             methods=["POST"],
         )
+        self.router.add_api_route(
+            path="/",
+            summary="Gets all addresses currently in the database",
+            endpoint=self.find_addresses,
+            response_description="Gets all address data",
+            methods=["GET"],
+        )
 
     async def get_address_by_id(self, address_id) -> Optional[Address]:
         """API handler for getting address data by address_id"""
@@ -51,3 +58,6 @@ class AddressRouter:
             return True
         else:
             return False
+
+    async def find_addresses(self) -> list[Address]:
+        return await self.address_controller.find_addresses()

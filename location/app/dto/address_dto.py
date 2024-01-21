@@ -1,5 +1,6 @@
 from typing import Optional
 
+
 class AddressDto:
     address_id: int
     address_line_one: str
@@ -16,4 +17,3 @@ class AddressDto:
 
     def __init__(self, d: dict):
         self.__dict__.update(d)
-

@@ -45,5 +45,13 @@ class AddressController():
             return await self.address_store.insert_address(to_address(address, google_maps_info))
         else:
             # TODO make better
-            print("Unable to get geolocation data for address")
             return 0
+
+    async def find_addresses(self) -> list[Address]:
+        address_dtos = await self.address_store.find_addresses()
+        if address_dtos:
+            result = [from_dto(x) for x in address_dtos]
+            return result
+        else:
+            return []
+
