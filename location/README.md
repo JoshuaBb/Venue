@@ -18,7 +18,7 @@ Everything can be setup via a docker-compose start up command. There is a volume
 # Get a GOOGLE API KEY for Google Maps API. Currently using the geolocate API 
 https://developers.google.com/maps
 # Save API KEY IN .profile/.bash_profile
-echo "export GOOGLE_MAPS_API_KEY=${API_KEY}" > ~./bash_profile
+echo "export GOOGLE_MAPS_API_KEY=${API_KEY}" >> ~./bash_profile
 
 # Make sure you are in the location module
 cd /location 
