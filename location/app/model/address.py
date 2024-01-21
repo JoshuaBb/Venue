@@ -12,6 +12,8 @@ class CreateAddressRequest(BaseModel):
     state_or_province: str
     zip_or_postal: str
     country_code: str
+    latitude: float
+    longitude: float
 
     def address(self) -> str:
         var = [address for address in
