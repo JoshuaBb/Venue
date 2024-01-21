@@ -40,7 +40,7 @@ curl -X 'POST' \
   "country_code": "US"
 }'
 ```
-![OpenAPI-sample.png](image%2FOpenAPI-sample.png)
+![OpenAPI-sample.png](docs%2Fimage%2FOpenAPI-sample.png)
 
 
 # New Lessons/Technologies 
