@@ -1,7 +1,7 @@
 import unittest
 from app.controller.address_controller import AddressController
-from app.router.address_router import AddressRouter, CreateAddressRequest
-from app.model.address import AddressResponse
+from app.router.address_router import AddressRouter
+from app.model.address import AddressResponse, CreateAddressRequest
 from unittest.mock import patch
 import pytest
 from httpx import AsyncClient

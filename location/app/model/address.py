@@ -3,6 +3,7 @@ from typing import Optional
 from app.dto.address_dto import AddressDto
 from app.util.google_maps_manager import GoogleMapsInfo
 
+
 class CreateAddressRequest(BaseModel):
     address_line_one: str
     address_line_two: Optional[str] = None

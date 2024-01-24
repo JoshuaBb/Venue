@@ -5,3 +5,4 @@ httpx==0.26.0
 psycopg2==2.9.9
 pytest==7.4.4
 googlemaps==4.10.0
+mockito===1.4.0

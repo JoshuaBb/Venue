@@ -39,7 +39,7 @@ class AddressController():
 
     async def post_address(self, address: CreateAddressRequest) -> int:
         """Using the Google Maps API, it will retrieve lat and lon and persist the location data into the database"""
-        google_maps_info = self.google_maps_manager.get_google_maps_info(address.address, address.city, address.state_or_province, address.latitude, address.longitude)
+        google_maps_info = await self.google_maps_manager.get_google_maps_info(address.address(), address.city, address.state_or_province, address.latitude, address.longitude)
         if google_maps_info:
             return await self.address_store.insert_address(to_address(address, google_maps_info))
         else:
