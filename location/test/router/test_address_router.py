@@ -16,7 +16,9 @@ class AddressRouterTest(unittest.IsolatedAsyncioTestCase):
         address_id = 1
         address = AddressResponse()
         address.address_id = address_id
-        address_controller.get_address_by_id.return_value = address
+        awaitable = asyncio.Future()
+        awaitable.set_result(address)
+        address_controller.get_address_by_id.return_value = awaitable
         address_router = AddressRouter(address_controller)
         async with AsyncClient(app=address_router.router, base_url="http://test") as ac:
             response = await ac.get(f"/address/{address_id}")
@@ -29,7 +31,9 @@ class AddressRouterTest(unittest.IsolatedAsyncioTestCase):
         address_id = 1
         address = AddressResponse()
         address.address_id = address_id
-        address_controller.find_addresses.return_value = [address]
+        awaitable = asyncio.Future()
+        awaitable.set_result([address])
+        address_controller.find_addresses.return_value = awaitable
         address_router = AddressRouter(address_controller)
         async with AsyncClient(app=address_router.router, base_url="http://test") as ac:
             response = await ac.get(f"/address/")
@@ -59,6 +63,11 @@ class AddressRouterTest(unittest.IsolatedAsyncioTestCase):
             latitude=1.0,
             longitude=1.0
         )
+        awaitable = asyncio.Future()
+        awaitable.set_result(1)
+
+        address_controller.post_address.return_value = awaitable
+
         address_router = AddressRouter(address_controller)
         async with AsyncClient(app=address_router.router, base_url="http://test") as ac:
             response = await ac.post(f"/address/", content=address.json())
