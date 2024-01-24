@@ -45,11 +45,11 @@ class AddressRouter:
 
     async def get_address_by_id(self, address_id) -> Optional[AddressResponse]:
         """API handler for getting address data by address_id"""
-        return await self.address_controller.get_address_by_id(address_id)
+        return self.address_controller.get_address_by_id(address_id)
 
     async def post_address(self, address: CreateAddressRequest) -> int:
         """API handler for insert address level data"""
-        return await self.address_controller.post_address(address)
+        return self.address_controller.post_address(address)
 
     async def delete_address_by_id(self, address_id) -> bool:
         """API handler for deleting address data using the address_id"""
@@ -60,4 +60,4 @@ class AddressRouter:
             return False
 
     async def find_addresses(self) -> list[AddressResponse]:
-        return await self.address_controller.find_addresses()
+        return self.address_controller.find_addresses()
