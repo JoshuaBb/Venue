@@ -4,7 +4,7 @@ from app.dto.address_dto import AddressDto
 from app.util.google_maps_manager import GoogleMapsInfo
 
 class CreateAddressRequest(BaseModel):
-    address_line_one: str = None
+    address_line_one: str
     address_line_two: Optional[str] = None
     address_line_three: Optional[str] = None
     address_line_four: Optional[str] = None
@@ -37,14 +37,13 @@ class AddressResponse(BaseModel):
     place_id: Optional[str] = None
 
 
-
-
 def to_address(create_address: CreateAddressRequest, google_maps_info: GoogleMapsInfo) -> AddressResponse:
     # TODO: I am sure there is a better way
     address = AddressResponse()
     address.__dict__.update(create_address.__dict__)
     address.__dict__.update(google_maps_info.__dict__)
     return address
+
 
 def from_dto(dto: AddressDto) -> AddressResponse:
     """Converts a DTO object to its API representation"""
