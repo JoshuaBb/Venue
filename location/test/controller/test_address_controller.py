@@ -95,7 +95,7 @@ class AddressControllerTest(unittest.IsolatedAsyncioTestCase):
         impl = AddressController(redis_manager, address_store, google_maps_manager)
         address_id = 1
         address = AddressResponse()
-        address.address_id = 1
+        address.address_id = address_id
 
         address_result = asyncio.Future()
         address_result.set_result(address.json())
