@@ -8,6 +8,9 @@ The Location service is built to store event and user location data. It utilizes
 3. Play around with the Redis Client
 4. Configure a project that is super easy to setup
 
+# Current Coverage (1/25/2024)
+![Coverage Report](docs%2Fimage%2Fcoverage-report.png)
+
 # How to Run Project
 Everything can be setup via a docker-compose start up command. There is a volume mount for persisting the Postgres database that was setup via FlyWay, but there is not data that was seeded into it yet. 
 
