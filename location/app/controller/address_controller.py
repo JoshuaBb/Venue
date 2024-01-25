@@ -23,7 +23,7 @@ class AddressController():
             # Stubbed for now
             if address_dto:
                 location = from_dto(address_dto)
-                await self.redis_manager.set(str(address_id), str(location.model_dump_json()))
+                await self.redis_manager.set(str(address_id), str(location.json()))
                 return from_dto(address_dto)
             return None
         else:

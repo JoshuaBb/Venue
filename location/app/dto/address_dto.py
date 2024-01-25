@@ -15,5 +15,10 @@ class AddressDto:
     longitude: float
     place_id: str
 
-    def __init__(self, d: dict):
-        self.__dict__.update(d)
+    def __init__(self):
+        pass
+
+def address_dto_from_dict(d: dict) -> AddressDto:
+    dto = AddressDto()
+    dto.__dict__.update(d)
+    return dto

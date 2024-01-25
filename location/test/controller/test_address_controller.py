@@ -3,13 +3,13 @@ import pytest
 import asyncio
 from unittest.mock import patch
 from app.util.redis_manager import RedisManager
+from app.dto.address_dto import AddressDto
 from app.store.address_store import AddressStore
 from app.model.address import CreateAddressRequest, AddressResponse, to_address, from_dto
 from app.util.google_maps_manager import GoogleMapsManager, GoogleMapsInfo
 from app.controller.address_controller import AddressController
 from app.router.address_router import CreateAddressRequest
 from mockito import when
-
 
 class AddressControllerTest(unittest.IsolatedAsyncioTestCase):
 
@@ -104,3 +104,36 @@ class AddressControllerTest(unittest.IsolatedAsyncioTestCase):
 
         result = await impl.get_address_by_id(address_id)
         assert result == address
+
+    @patch('app.util.redis_manager.RedisManager')
+    @patch('app.store.address_store.AddressStore')
+    @patch('app.util.google_maps_manager.GoogleMapsManager')
+    @pytest.mark.asyncio
+    async def test_get_address_by_id_without_cache(self, redis_manager: RedisManager, address_store: AddressStore,
+                                                google_maps_manager: GoogleMapsManager):
+        impl = AddressController(redis_manager, address_store, google_maps_manager)
+        address_id = 1
+        address = AddressDto()
+        address.address_id = address_id
+        address.address_line_one = "Some Address"
+        address.city = "Denver"
+        address.state_or_province = "CO"
+        address.zip_or_postal = "34323"
+        address.country_code = "US"
+        address.latitude = 1.0
+        address.longitude = 1.0
+        address.place_id = "Some_Place_Id"
+
+        address_cache_result = asyncio.Future()
+        address_cache_result.set_result(None)
+
+        when(redis_manager).get(address_id).thenReturn(address_cache_result)
+
+        address_result = asyncio.Future()
+        address_result.set_result(address)
+
+        when(address_store).get_address_by_id(address_id).thenReturn(address_result)
+        when(redis_manager).set(str(address_id), from_dto(address).json()).thenReturn(address_cache_result)
+
+        result = await impl.get_address_by_id(address_id)
+        assert result == from_dto(address)

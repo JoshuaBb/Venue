@@ -1,5 +1,5 @@
 from app.util.database import Db
-from app.dto.address_dto import AddressDto
+from app.dto.address_dto import AddressDto, address_dto_from_dict
 from typing import Optional
 from app.model.address import AddressResponse
 
@@ -11,7 +11,7 @@ class AddressStore:
 
     async def get_address_by_id(self, address_id: int) -> Optional[AddressDto]:
         """Gets the address info from the database using a address_id"""
-        return await self.db.query_one("select * from address where address_id = %s", AddressDto, address_id)
+        return await self.db.query_one("select * from address where address_id = %s", address_dto_from_dict, address_id)
 
     async def delete_address_by_id(self, address_id: int) -> int:
         """Deletes a address data from the database using the address_id"""
@@ -65,5 +65,5 @@ class AddressStore:
         )
 
     async def find_addresses(self) -> list[AddressDto]:
-        return await self.db.query("select * from address", AddressDto)
+        return await self.db.query("select * from address", address_dto_from_dict)
 
