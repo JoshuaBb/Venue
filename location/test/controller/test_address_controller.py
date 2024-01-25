@@ -11,6 +11,7 @@ from app.controller.address_controller import AddressController
 from app.router.address_router import CreateAddressRequest
 from mockito import when
 
+
 class AddressControllerTest(unittest.IsolatedAsyncioTestCase):
 
     @patch('app.util.redis_manager.RedisManager')
@@ -110,7 +111,7 @@ class AddressControllerTest(unittest.IsolatedAsyncioTestCase):
     @patch('app.util.google_maps_manager.GoogleMapsManager')
     @pytest.mark.asyncio
     async def test_get_address_by_id_without_cache(self, redis_manager: RedisManager, address_store: AddressStore,
-                                                google_maps_manager: GoogleMapsManager):
+                                                   google_maps_manager: GoogleMapsManager):
         impl = AddressController(redis_manager, address_store, google_maps_manager)
         address_id = 1
         address = AddressDto()
