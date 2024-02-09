@@ -32,7 +32,8 @@ class AddressController:
             return None
 
     async def delete_address_by_id(self, address_id: int) -> int:
-        """Deletes an address by address_id. It will also remove the location data from the Redis Cache."""
+        """Deletes an address by address_id.
+        It will also remove the location data from the Redis Cache."""
         try:
             row_count = await self.address_store.delete_address_by_id(address_id)
             if row_count == 1:
