@@ -1,7 +1,7 @@
+from typing import Optional, List
 from fastapi import APIRouter, HTTPException
 from app.controller.address_controller import AddressController
 from app.model.address import AddressResponse, CreateAddressRequest
-from typing import Optional, List
 
 class AddressRouter:
 
@@ -45,21 +45,24 @@ class AddressRouter:
     async def get_address_by_id(self, address_id) -> Optional[AddressResponse]:
         """API handler for getting address data by address_id"""
         try:
-            return await self.address_controller.get_address_by_id(address_id)
+            result = self.address_controller.get_address_by_id(address_id)
+            return await result
         except Exception as e:
             raise HTTPException(status_code=500, detail=str(e))
 
     async def post_address(self, address: CreateAddressRequest) -> int:
         """API handler for inserting address level data"""
         try:
-            return await self.address_controller.post_address(address)
+            result = self.address_controller.post_address(address)
+            return await result
         except Exception as e:
             raise HTTPException(status_code=500, detail=str(e))
 
     async def delete_address_by_id(self, address_id) -> None:
         """API handler for deleting address data using the address_id"""
         try:
-            rows_updated = await self.address_controller.delete_address_by_id(address_id)
+            result = self.address_controller.delete_address_by_id(address_id)
+            rows_updated = await result
             if rows_updated == 0:
                 raise HTTPException(status_code=404, detail=f"Address with id {address_id} not found")
         except Exception as e:

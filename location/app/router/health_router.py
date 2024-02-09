@@ -1,6 +1,8 @@
+"""Module created to handle Health Checks"""
 from fastapi import APIRouter
 
 class HealthRouter:
+    """HealthRouter Class handles health checks"""
 
     def __init__(self):
         self.router = APIRouter(
@@ -12,7 +14,8 @@ class HealthRouter:
             summary="Simple health check endpoint",
             endpoint=self.get_health_check,
             methods=["GET"],
-            response_description="Returns a 200 response with a message indicating that the service is running"
+            response_description="""Returns a 200 response with a message indicating
+             that the service is running"""
         )
 
     def get_health_check(self):
