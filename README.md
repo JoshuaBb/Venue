@@ -7,6 +7,7 @@
 
 ## Components
 
+
 ### [Location](location/README.md)
 Location is in charge of handling address information for venues. It will persist the latitude and longitude to aid in searching 
 ### Planner 
