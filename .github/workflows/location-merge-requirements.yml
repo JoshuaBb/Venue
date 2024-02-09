@@ -1,6 +1,5 @@
 name: location Test Before Merge
-env:
-  working_dir: location
+
 on:
   pull_request:
     types:
@@ -26,16 +25,16 @@ jobs:
         pip install -r requirements.txt  
         pip install -r test-requirements.txt
         pip install . e
-      working-directory: env.working_dir
+      working-directory: location
 
     - name: Run tests
       run: pytest  # Adjust as needed
-      working-directory: env.working_dir
+      working-directory: location
 
     - name: Comment on pull request
       if: success()
       run: |
-        echo "Tests passed for $working_dir Service. Ready for merge!"
+        echo "Tests passed for Location-Service. Ready for merge!"
         # Add a comment to the pull request indicating that tests passed
         # Example: Add a comment with a success message
         curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" -X POST \
