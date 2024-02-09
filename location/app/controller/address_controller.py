@@ -64,4 +64,5 @@ class AddressController:
             return [from_dto(x) for x in address_dtos] if address_dtos else []
         except Exception as e:
             # Handle exceptions appropriately (e.g., log the error)
+            print(str(e))
             return []

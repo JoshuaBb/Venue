@@ -1,3 +1,5 @@
+from fastapi import APIRouter
+
 class HealthRouter:
 
     def __init__(self):
@@ -10,7 +12,6 @@ class HealthRouter:
             summary="Simple health check endpoint",
             endpoint=self.get_health_check,
             methods=["GET"],
-            response_model=dict(status=str, message=str),
             response_description="Returns a 200 response with a message indicating that the service is running"
         )
 
