@@ -1,0 +1,40 @@
+name: Creating Release
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types:
+      - closed
+
+jobs:
+  create-tag:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v2
+
+      - name: Set up Git
+        run: |
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions"
+
+      - name: Create Tag
+        if: github.event_name == 'push'
+        run: |
+          # Check if the push event is a direct push to the main branch
+          if [[ $GITHUB_REF == 'refs/heads/main' ]]; then
+            git tag -a v${{ github.run_number }} -m "Version ${{ github.run_number }}"
+            git push origin --tags
+          fi
+
+      - name: Create Tag on PR merge
+        if: github.event_name == 'pull_request' && github.event.action == 'closed'
+        run: |
+          # Check if the PR is merged into the main branch
+          if [[ ${{ github.event.pull_request.base.ref }} == 'main' && ${{ github.event.pull_request.merged }} == 'true' ]]; then
+            git tag -a v${{ github.run_number }} -m "Version ${{ github.run_number }}"
+            git push origin --tags
+          fi
