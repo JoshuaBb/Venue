@@ -1,9 +1,12 @@
+"""Module responsible for handling routes for Address Level Data"""
+
 from typing import Optional, List
 from fastapi import APIRouter, HTTPException
 from app.controller.address_controller import AddressController
 from app.model.address import AddressResponse, CreateAddressRequest
 
 class AddressRouter:
+    """Class created that handles routes for addresses in location service"""
 
     def __init__(self, address_controller: AddressController):
         self.address_controller = address_controller
