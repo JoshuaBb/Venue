@@ -29,12 +29,3 @@ jobs:
             git tag -a v${{ github.run_number }} -m "Version ${{ github.run_number }}"
             git push origin --tags
           fi
-
-      - name: Create Tag on PR merge
-        if: github.event_name == 'pull_request' && github.event.action == 'closed'
-        run: |
-          # Check if the PR is merged into the main branch
-          if [[ ${{ github.event.pull_request.base.ref }} == 'main' && ${{ github.event.pull_request.merged }} == 'true' ]]; then
-            git tag -a v${{ github.run_number }} -m "Version ${{ github.run_number }}"
-            git push origin --tags
-          fi
