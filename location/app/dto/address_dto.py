@@ -1,12 +1,10 @@
 from typing import Optional
+from dataclasses import dataclass, asdict
 
-
+@dataclass
 class AddressDto:
     address_id: int
     address_line_one: str
-    address_line_two: Optional[str]
-    address_line_three: Optional[str]
-    address_line_four: Optional[str]
     city: str
     state_or_province: str
     zip_or_postal: str
@@ -14,9 +12,15 @@ class AddressDto:
     latitude: float
     longitude: float
     place_id: str
+    address_line_two: Optional[str] = None
+    address_line_three: Optional[str] = None
+    address_line_four: Optional[str] = None
 
     def __init__(self):
         pass
+
+    def dict(self) -> dict[str, any]:
+        return asdict(self)
 
 def address_dto_from_dict(d: dict) -> AddressDto:
     dto = AddressDto()

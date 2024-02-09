@@ -1,16 +1,22 @@
 import os
 import googlemaps
 from typing import Optional
+from dataclasses import dataclass, asdict
 
 
 # Google is a bit stringent on what can be persisted. I think that place_id, latitude, and longitude are safe to persist
 # I will double check
 # https://stackoverflow.com/questions/20803805/terms-and-conditions-google-maps-can-i-store-lat-lng-and-address-components
+
+@dataclass
 class GoogleMapsInfo:
 
     def __init__(self, place_id):
         # https://developers.google.com/maps/documentation/places/web-service/place-id#save-id
         self.place_id = place_id
+
+    def dict(self) -> dict[str, any]:
+        return asdict(self)
 
 
 class GoogleMapsManager:

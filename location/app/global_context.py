@@ -7,7 +7,10 @@ from app.store import address_store
 import datetime
 import logging
 
-logging.basicConfig(level=logging.INFO, filemode='w', format=f'{datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")} - %(levelname)s - %(message)s')
+logging.basicConfig(
+    level=logging.INFO,
+    filemode='w',
+    format=f'{datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")} - %(levelname)s - %(message)s')
 
 db_connection = Db()
 
@@ -21,7 +24,11 @@ google_maps_manager = GoogleMapsManager()
 location_store = address_store.AddressStore(db_connection)
 
 # Controllers
-location_controller = address_controller.AddressController(redis_manager, location_store, google_maps_manager)
+location_controller = address_controller.AddressController(
+    redis_manager,
+    location_store,
+    google_maps_manager
+)
 
 # Routers
 health_router = health_router.HealthRouter()
