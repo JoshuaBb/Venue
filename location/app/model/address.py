@@ -17,10 +17,11 @@ class CreateAddressRequest(BaseModel):
     longitude: float
 
     def address(self) -> str:
-        var = [address for address in
-               [self.address_line_one, self.address_line_two, self.address_line_three, self.address_line_four] if
-               address]
-        return " ".join(var)
+        """Concatenate non-empty address lines."""
+        address_parts = [address for address in
+                         [self.address_line_one, self.address_line_two, self.address_line_three, self.address_line_four] if
+                         address]
+        return " ".join(address_parts)
 
 
 class AddressResponse(BaseModel):
@@ -39,15 +40,13 @@ class AddressResponse(BaseModel):
 
 
 def to_address(create_address: CreateAddressRequest, google_maps_info: GoogleMapsInfo) -> AddressResponse:
-    # TODO: I am sure there is a better way
-    address = AddressResponse()
-    address.__dict__.update(create_address.__dict__)
-    address.__dict__.update(google_maps_info.__dict__)
-    return address
+    """Create an AddressResponse from CreateAddressRequest and GoogleMapsInfo."""
+    return AddressResponse(
+        **create_address.dict(),
+        **google_maps_info.dict()
+    )
 
 
 def from_dto(dto: AddressDto) -> AddressResponse:
-    """Converts a DTO object to its API representation"""
-    address = AddressResponse()
-    address.__dict__.update(dto.__dict__)
-    return address
+    """Converts a DTO object to its API representation."""
+    return AddressResponse(**dto.dict())

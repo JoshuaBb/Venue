@@ -1,5 +1,4 @@
-from fastapi import APIRouter
-class HealthRouter():
+class HealthRouter:
 
     def __init__(self):
         self.router = APIRouter(
@@ -9,12 +8,16 @@ class HealthRouter():
         self.router.add_api_route(
             path="/",
             summary="Simple health check endpoint",
-            endpoint=self.get_health,
+            endpoint=self.get_health_check,
             methods=["GET"],
-            response_description="Gets a 200 response a message indicate that the service is running"
+            response_model=dict(status=str, message=str),
+            response_description="Returns a 200 response with a message indicating that the service is running"
         )
 
-    def get_health(self):
-        """Should just return 200 if the service is up"""
-        return "Everything WORKS!"
+    def get_health_check(self):
+        """Health check endpoint to verify that the service is running.
 
+        Returns:
+            dict: A dictionary containing the status and message.
+        """
+        return {"status": "UP", "message": "Everything WORKS!"}
