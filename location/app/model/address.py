@@ -18,8 +18,13 @@ class CreateAddressRequest(BaseModel):
 
     def address(self) -> str:
         """Concatenate non-empty address lines."""
-        address_parts = [address for address in
-                         [self.address_line_one, self.address_line_two, self.address_line_three, self.address_line_four] if
+        arr = [
+            self.address_line_one,
+            self.address_line_two,
+            self.address_line_three,
+            self.address_line_four
+        ]
+        address_parts = [address for address in arr if
                          address]
         return " ".join(address_parts)
 

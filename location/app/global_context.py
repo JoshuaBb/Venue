@@ -1,11 +1,13 @@
+"""Class Responsible for initializing project dependencies for project"""
+
+import datetime
+import logging
 from app.controller import address_controller
 from app.util.redis_manager import RedisManager
 from app.util.google_maps_manager import GoogleMapsManager
 from app.router import address_router, health_router
 from app.util.database import Db
 from app.store import address_store
-import datetime
-import logging
 
 logging.basicConfig(
     level=logging.INFO,

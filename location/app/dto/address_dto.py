@@ -1,8 +1,10 @@
+"""Module responsible for converting the Result Set from database into valid python object"""
 from typing import Optional
 from dataclasses import dataclass, asdict
 
 @dataclass
 class AddressDto:
+    """Class responsible for storing Address level data from the database"""
     address_id: int
     address_line_one: str
     city: str
@@ -20,9 +22,11 @@ class AddressDto:
         pass
 
     def dict(self) -> dict[str, any]:
+        """Converts the class properties into a dict"""
         return asdict(self)
 
 def address_dto_from_dict(d: dict) -> AddressDto:
+    """Converts a dict into an AddressDto object"""
     dto = AddressDto()
     dto.__dict__.update(d)
     return dto
