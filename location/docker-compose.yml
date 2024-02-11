@@ -39,7 +39,7 @@ services:
   open-api:
     build: docs
     volumes:
-      - ./open-api:/open-api
+      - ./docs:/docs
     depends_on:
       server:
         condition: service_healthy
@@ -47,4 +47,4 @@ services:
     stdin_open: true
 volumes:
   postgres-data:
-  open-api:
+  docs:
