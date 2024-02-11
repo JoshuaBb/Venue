@@ -29,20 +29,10 @@ cd /location
 docker-compose up --build
 # In browser
 http://localhost:8000/docs#/default
-
-# Sample Request
-curl -X 'POST' \
-  'http://localhost:8000/address/' \
-  -H 'accept: application/json' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "address_line_one": "20 W 34th St",
-  "city": "New York",
-  "state_or_province": "NY",
-  "zip_or_postal": "10001",
-  "country_code": "US"
-}'
 ```
+To see actual data follow instructions here
+[README.md](seeder%2FREADME.md)
+
 ![OpenAPI-sample.png](docs%2Fimage%2FOpenAPI-sample.png)
 
 
