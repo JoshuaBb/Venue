@@ -1,0 +1,20 @@
+[
+  {
+    "address_line_one": "20 W 34th St",
+    "city": "New York",
+    "state_or_province": "NY",
+    "zip_or_postal": "10001",
+    "country_code": "US",
+    "latitude": 40.7484,
+    "longitude": -73.985428
+  },
+  {
+    "address_line_one": "1600 Pennsylvania Avenue NW",
+    "city": "Washington",
+    "state_or_province": "DC",
+    "zip_or_postal": "20500",
+    "country_code": "US",
+    "latitude": 38.8977,
+    "longitude": -77.036560
+  }
+]
