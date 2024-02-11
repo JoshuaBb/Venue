@@ -53,8 +53,10 @@ class AddressController:
                 return await self.address_store.insert_address(to_address(address, google_maps_info))
             else:
                 # TODO: Decide on a better way to handle this case
+                print("maps info is empty")
                 return 0
         except Exception as e:
+            print(e)
             # Handle exceptions appropriately (e.g., log the error)
             return 0
 

@@ -46,10 +46,13 @@ class AddressResponse(BaseModel):
 
 def to_address(create_address: CreateAddressRequest, google_maps_info: GoogleMapsInfo) -> AddressResponse:
     """Create an AddressResponse from CreateAddressRequest and GoogleMapsInfo."""
-    return AddressResponse(
+    result = AddressResponse(
         **create_address.dict(),
         **google_maps_info.dict()
     )
+    print(google_maps_info)
+
+    return result
 
 
 def from_dto(dto: AddressDto) -> AddressResponse:

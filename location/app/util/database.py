@@ -1,9 +1,13 @@
+"""Module responsible for wrapping queries to DB database"""
 import os
 import psycopg2
 from psycopg2.extras import RealDictCursor
 from psycopg2.pool import SimpleConnectionPool
 
 class Db:
+    """Class responsible for wrapping queries to DB database
+    initializes a connection pool to be able to reuse database connections
+    """
     def __init__(self):
         self.pool = self.create_connection_pool()
 
@@ -37,14 +41,16 @@ class Db:
             print('Error occurred:', error)
 
     async def query_one(self, query, convert_func, args=None):
-        """Queries a database, but only gets the first value. It then converts the result set to an object using the convert function"""
+        """Queries a database, but only gets the first value.
+        It then converts the result set to an object using the convert function"""
         try:
             return self.execute_query(query, args, convert_func, fetch_all=False)
         except (Exception, psycopg2.DatabaseError) as error:
             print('Error occurred:', error)
 
     async def update(self, query, args=None):
-        """Will update, insert, or delete values from the database. Returns the number of rows affected"""
+        """Will update, insert, or delete values from the database.
+        Returns the number of rows affected"""
         try:
             with self.pool.getconn() as conn:
                 with conn.cursor() as curr:

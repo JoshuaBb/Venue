@@ -1,8 +1,10 @@
-import redis
+"""Module created as a wrapper around Redis Cache and is responsible for creating the cache"""
 import os
+import redis
 
 
 class RedisManager:
+    """Class that wraps Redis functionality"""
     def __init__(self, name_space: str):
         redis_host = os.getenv('REDIS_HOST')
         redis_port = int(os.getenv('REDIS_PORT'))
