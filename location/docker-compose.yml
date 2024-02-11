@@ -10,6 +10,11 @@ services:
       - redis
       - db
     env_file: local.env
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8000/health/" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
   redis:
     image: redis
     ports:
@@ -31,5 +36,15 @@ services:
       - .:/flyway/sql
     depends_on:
       - db
+  open-api:
+    build: docs
+    volumes:
+      - ./open-api:/open-api
+    depends_on:
+      server:
+        condition: service_healthy
+    tty: true
+    stdin_open: true
 volumes:
   postgres-data:
+  open-api:
