@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  db:
+    build: postgres
+    restart: always
+    env_file: local.env
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: "pg_isready -q -U docker"
+  flyway:
+    image: flyway/flyway
+    # TODO Remove these magic variables and simplify local.env file
+    command: -url=jdbc:postgresql://db:5432/postgres -schemas=public -user=docker -password=example -connectRetries=60 migrate
+    env_file: local.env
+    volumes:
+      - .:/flyway/sql
+    depends_on:
+      - db
+volumes:
+  postgres-data:

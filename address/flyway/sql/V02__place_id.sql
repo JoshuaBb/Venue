@@ -1,0 +1,2 @@
+ALTER TABLE address DROP COLUMN address_key;
+ALTER TABLE address ADD COLUMN place_id VARCHAR(256) NOT NULL;
