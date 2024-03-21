@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+option java_package = "address.proto";
+option java_multiple_files = true;
+
+message Coordinate {
+  double latitude = 1;
+  double longitude = 2;
+}
+
+message Address {
+  optional int32 address_id = 1;
+  string address = 2;
+  string city = 3;
+  string state_or_province = 4;
+  string country_code = 5;
+  optional double latitude = 6;
+  optional Coordinate coordinate = 7;
+  optional string place_id = 8;
+}
+
+message GetAddressRequest {}
+message GetAddressResponse {
+  repeated Address addresses = 1;
+}
+
+message HelloWorldRequest {
+  // a name to greet, default is "World"
+  optional string name = 1;
+}
+
+message HelloWorldResponse {
+  string greeting = 1;
+}
+
+service AddressService {
+  rpc GetAddresses(GetAddressRequest) returns (GetAddressResponse);
+}
+
+service HelloWorldService {
+  rpc SayHello(stream HelloWorldRequest) returns (stream HelloWorldResponse);
+}
