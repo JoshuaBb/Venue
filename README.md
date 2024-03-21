@@ -8,8 +8,10 @@
 ## Components
 
 
-### [Location](location/README.md)
+### [Location(Deprecated)](location/README.md)
 Location is in charge of handling address information for venues. It will persist the latitude and longitude to aid in searching 
+### [Address](address/README.md)
+Address is a rewrite of the Location service using Java. There were things that I found awkward with the Location Service
 ### Planner 
 Planner is either a group of users or individual users that are able set up events. This service is in charge of persisting planner information such as rating and groups of users associated with a specific creating events 
 ### Event
