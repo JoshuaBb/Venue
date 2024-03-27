@@ -9,7 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class AddressServiceImpl extends AddressServiceImplBase {
-    Logger logger = LoggerFactory.getLogger(AddressServiceImpl.class);
+    private static Logger logger = LoggerFactory.getLogger(AddressServiceImpl.class);
 
     private AddressController addressController;
 
