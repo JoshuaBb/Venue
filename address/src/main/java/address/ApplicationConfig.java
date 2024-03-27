@@ -1,17 +1,17 @@
 package address;
 
 import address.util.config.model.Grpc;
-import address.util.config.model.Postgres;
+import address.util.config.model.Database;
 
 public class ApplicationConfig {
     private Grpc grpc;
-    private Postgres postgres;
+    private Database database;
 
     public ApplicationConfig(){}
 
-    public ApplicationConfig(Grpc grpc, Postgres postgres) {
+    public ApplicationConfig(Grpc grpc) {
         this.grpc = grpc;
-        this.postgres = postgres;
+        this.database = database;
     }
 
     public Grpc getGrpc() {
@@ -22,11 +22,11 @@ public class ApplicationConfig {
         this.grpc = grpc;
     }
 
-    public Postgres getPostgres() {
-        return postgres;
+    public Database getDatabase() {
+        return database;
     }
 
-    public void setPostgres(Postgres postgres) {
-        this.postgres = postgres;
+    public void setDatabase(Database database) {
+        this.database = database;
     }
 }
