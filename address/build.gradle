@@ -87,13 +87,13 @@ protobuf {
         }
     }
 
-    generatedFilesBaseDir = "$projectDir/src/generated"
+    generatedFilesBaseDir = "$projectDir/src/generated/java"
 }
 
 sourceSets {
     main {
         java {
-            srcDirs 'src/generated/main/java', 'src/generated/main/grpc'
+            srcDirs 'src/generated/java/main'
         }
     }
 }
@@ -120,7 +120,7 @@ jooq {
             }
             target {
                 packageName = 'dao.jooq'
-                directory = 'src/main'
+                directory = 'src/generated/java/main'
             }
         }
     }
