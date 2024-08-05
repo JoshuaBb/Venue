@@ -1,7 +1,7 @@
 name: test
 on:
   issue_comment:
-    if: github.event_name == 'pull_request'
+    if: github.event_name == 'pull_request' && contains(github.event.comment.body, '/support')
     types:
       - created
 jobs:
