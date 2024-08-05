@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{!startsWith(github.event.comment.body, '/support')}}
     env:
-      GH_TOKEN: ${{ github.token }}
+      GH_TOKEN: ${{secrets.GH_TOKEN}}
     steps:
       - name: cleanUp
         run: gh api -X DELETE /repos/JoshuaBb/Venue/actions/runs/${{github.run_id}}
