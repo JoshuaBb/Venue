@@ -1,12 +1,13 @@
 name: test
 on:
   issue_comment:
+    if: ${{!startsWith(github.event.comment.body, '/support')}}
     types:
       - created
 jobs:
   test:
     runs-on: ubuntu-latest
-    if: contains(github.event.comment.body, '/support')
+    if:  ${{!startsWith(github.event.comment.body, '/support')}}
     steps:
       - name: test
         run: echo "hello"
