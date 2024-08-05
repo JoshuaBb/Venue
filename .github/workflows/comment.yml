@@ -1,0 +1,12 @@
+name: test
+on:
+  issue_comment:
+    if: github.event_name == 'pull_request'
+    types:
+      - created
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: test
+        run: echo "hello"
