@@ -1,7 +1,6 @@
 name: test
 on:
   issue_comment:
-    if: startsWith(github.event.comment.body, '/support')
     types:
       - created
 jobs:
