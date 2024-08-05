@@ -1,12 +1,19 @@
 name: test
 on:
   issue_comment:
-    if: github.event_name == 'pull_request' && contains(github.event.comment.body, '/support')
+    if: ${{!startsWith(github.event.comment.body, '/support')}}
     types:
       - created
 jobs:
   test:
     runs-on: ubuntu-latest
+    if:  ${{!startsWith(github.event.comment.body, '/support')}}
     steps:
       - name: test
         run: echo "hello"
+  clean_up:
+    runs-on: ubuntu-latest
+    if: ${{!startsWith(github.event.comment.body, '/support')}}
+    steps:
+      - name: cleanUp
+        run: gh api -X DELETE /repos/JoshuaBb/Venue/actions/runs/${{github.run_id}}
