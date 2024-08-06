@@ -10,4 +10,4 @@ jobs:
     if:  github.event.pull_request.merged == true
     steps:
       - name: test
-        run: echo "hello"
+        run: exit 1
